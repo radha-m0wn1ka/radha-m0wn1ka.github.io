@@ -32,7 +32,20 @@ echo 'export MY_VARIABLE="new_value"' >> ~/.bashrc
 ```
 ## NGROK WEBSERVER LOCAL
 ```
-In a empty dirctory $webup
+https://ngrok.com/docs/getting-started/
+ngrok http 8000 --basic-auth 'ngrok:password for site'
+In a empty dirctory $webup or $ python -m http.server 8000 or $python3 -m http.server
 in anothr terminal say ngrok 80
 u will get a url
 request to that url can be seen in terminal webup
+netat::::
+nc -nlvp 8080 (no dns lookup listen_mode verbose_mode port_specify
+ngrok http/tcp port_number
+```
+## base 64
+```
+base64 filename
+echo -n "YourString" | base64
+base64 -d encodedfile > outputfile
+echo -n "EncodedBase64String" | base64 -d
+```
