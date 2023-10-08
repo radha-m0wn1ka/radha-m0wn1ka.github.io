@@ -15,3 +15,27 @@ ip addr show
 ifconfig
 
 ```
+## netcat 
+```
+terminal 1 (/home)((commands in terminal 2 will be executed in terminal 1
+$nc -nlp 1337 -e /bin/bash
+^c
+
+terminal 2(/downloads)
+$nc 127.0.0.1 1337 
+ls
+->file in terminal1
+
+```
+## netcat
+```
+terminal 1 (/home)
+$nc -nlp 1337
+ls
+->file in terminal
+
+
+terminal 2(/downloads)((commands in terminal 1 will be executed in terminal 2
+$nc 127.0.0.1 1337 -e /bin/bash
+^c
+```
