@@ -12,4 +12,6 @@ web workers
 blob url or object url
 dom purify
 dom clobberig
+ejs syntax <=%  %>
+https://portswigger.net/research/widespread-prototype-pollution-gadgets
 ```
