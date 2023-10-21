@@ -71,7 +71,7 @@ so we can see the key does not have any effect only the value
 ```
 url/?name={"key_random":"m0wn1ka"}
 we can see it does work
-https://msrkp.github.io/?name={%22key_random%22:%22m0wn1ka%22}
+https://msrkp.github.io/?name={"key_random":"m0wn1ka"}
 will show our name appended to the hof
 ```
 ### later 
