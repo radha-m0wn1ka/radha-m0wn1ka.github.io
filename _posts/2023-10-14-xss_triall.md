@@ -145,7 +145,7 @@ t>
 site to refer
 https://github.com/advisories/GHSA-gxr4-xjj5-5px2
 https://github.com/advisories/GHSA-6c3j-c64m-qhgq
-want to try this https://msrkp.github.io/?name={__proto__:{%22protokey%22:%22protovalue%22}}
+want to try this https://msrkp.github.io/?name={__proto__:{"protokey":"protovalue"}}
 ```
 ### getting prototype of inner html
 ```
