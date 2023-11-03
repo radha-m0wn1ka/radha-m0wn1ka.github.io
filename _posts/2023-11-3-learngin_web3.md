@@ -24,7 +24,7 @@ nvm install node (node version manager)
 ## using solc js
 $solcjs --help
 $solcjs --abi/bin contract_file.sol
-### guide to ethersjs
+# guide to ethersjs
 https://blog.finxter.com/i-created-a-counter-smart-contract-with-ether-js-heres-how/
 ### signer
 - A Signer represents an account on the Ethereum Blockchain, and is most often backed by a private key represented by a mnemonic or residing on a Hardware Wallet
@@ -58,4 +58,9 @@ Current backend strings supported are:
 "infura"
 "publicPolygon"
 "quicknode"
+https://dev.to/yakult/03-understanding-blockchain-with-ethersjs-4-tasks-of-interacting-with-smart-contract-3ef6
 ```
+## import vs require in detail
+https://www.scaler.com/topics/nodejs/require-vs-import-nodejs/
+## default vs named exports in detail
+https://dev.to/shacodes/default-vs-named-exports-19hj
