@@ -32,12 +32,15 @@ https://blog.finxter.com/i-created-a-counter-smart-contract-with-ether-js-heres-
 - The Provider attached to this Signer (if any).(signer.provder)
 - https://docs.ethers.org/v6/api/providers/#Signer
 ### provider
+```
 - A Provider provides a connection to the blockchain, whch can be used to query its current state,
   simulate execution and send transactions to update the state.
 
 - It is one of the most fundamental components of interacting with a blockchain application
  , and there are many ways to connect, such as over HTTP, WebSockets or injected providers such as MetaMask.
+```
 #### get default provider function
+
 ```
 Returns a default provider for network.
 
