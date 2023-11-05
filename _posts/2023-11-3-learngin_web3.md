@@ -97,3 +97,69 @@ async function main(){
 }
 main()
 ```
+# 05-11-2023
+```
+process :
+In Node.js, process is a global object that provides information about the current Node.js process, as well as methods to interact with it
+https://www.npmjs.com/package/dotenv
+As early as possible in your application, import and configure dotenv:
+
+require('dotenv').config()
+console.log(process.env)
+```
+## storage layout
+https://medium.com/@flores.eugenio03/exploring-the-storage-layout-in-solidity-and-how-to-access-state-variables-bf2cbc6f8018
+```
+Solidity provides 2²⁵⁶ slots (indexed from 0 to 2²⁵⁶- 1) each with a fixed length of 32 bytes.
+State variables are stored according to their position declaration, length and wheter they are a value or dynamic type.
+uint256 a; means a is of 256 bit size i.e 256/8=32 byte size
+boolean 0x01(true) or 0x00(false) just 1 byte
+address is a unique built-in type in Solidity that has a length of 20 byte
+bytes32 has a visual length of 64
+ex::
+>>> s="0000000000000000000000cc8188e984b4c392091043caa73d227ef5e0d0a701"
+ >>> len(s)
+>>> 64
+ >>>a="cc8188e984b4c392091043caa73d227ef5e0d0a7"
+>>> len(a)
+>>>40  
+maximum length of any slot is 32 bytes
+we can find out the values of a contracts state variable just by using
+web3.eth.getStorageAt("0x338ba36a41a1713edeb4020031f30f5be1645d43","0")-contract address,slot position
+ 
+```
+## example on remix
+```
+contract Venue {
+    bytes32 public key=0x0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef;
+    bytes4 public key_1=0x99998888;
+    bytes16 public key_2=0x99998888999988889999888899998888;
+    address public owner=0xDA0bab807633f07f013f94DD0E6A4F96F8742B53;
+    uint256 public Token;
+    address public Courier=0xDA0bab807633f07f013f94DD0E6A4F96F8742B53;
+    uint256 public lump_sum;
+    bytes32 public password=0x0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef;
+}
+contract addres ,0x55AD49B102CE9a1AE3A30E8119cF886C4df1579c
+slot 0 and slot 1
+0x0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+0x0000000000000000000000009999888899998888999988889999888899998888
+in remix by going to compilation details we can get storage layout and abi
+
+
+```
+## foundry up
+```
+https://book.getfoundry.sh/getting-started/installation
+curl -L https://foundry.paradigm.xyz | bash
+foundryup
+```
+## function selector --cast
+```
+https://medium.com/coinmonks/function-selectors-in-solidity-understanding-and-working-with-them-25e07755e976
+ function selector is a four-byte identifier determined through the Keccak (SHA-3) hash of the function's signature. The function signature is derived from the function name and the parenthesized list of parameter types. For instance, the function signature for a function named myFunction that takes an address and a uint256 would be myFunction(address,uint256).
+bytes4(keccak256(bytes("function_name(type_of_argument1,type_of_arg2,..)" )))
+
+radha@DESKTOP-E4J3HG3:~$ cast sig "fun1(arg1,arg2)"
+  0xf5d93e45  --4bytes f5  d9 3e 45
+```
