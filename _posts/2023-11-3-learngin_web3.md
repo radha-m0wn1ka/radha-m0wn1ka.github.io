@@ -1,3 +1,4 @@
+https://docs.alchemy.com/docs/ethers-js-signer
 ## from tcp1ctf
 ```
 https://themj0ln1r.github.io/posts/tcp1pctf
@@ -64,3 +65,32 @@ https://dev.to/yakult/03-understanding-blockchain-with-ethersjs-4-tasks-of-inter
 https://www.scaler.com/topics/nodejs/require-vs-import-nodejs/
 ## default vs named exports in detail
 https://dev.to/shacodes/default-vs-named-exports-19hj
+# 04-11-2023
+https://docs.alchemy.com/docs/what-is-ethers-js
+## send transaction using ethersjs infura 
+https://docs.infura.io/tutorials/ethereum/send-a-transaction/send-a-transaction-2
+# next
+alchemy sdk whole folder
+<br>
+https://docs.alchemy.com/docs/ethers-js-signer 
+```
+require('dotenv').config();
+const ethers = require('ethers');
+
+ADDRESS = '0x1AC90AFd478F30f2D617b3Cb76ee00Dd73A9E4d3'
+ABI = [{"inputs":[{"internalType":"string","name":"initialFlag","type":"string"},{"internalType":"string","name":"initialMessage","type":"string"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[],"name":"enterVenue","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"goBack","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"}]
+// provider
+const provider = new ethers.AlchemyProvider('sepolia', process.env.API_KEY);
+
+const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
+async function main(){
+    console.log("loging block num")
+    console.log(await provider.getBlockNumber())
+    const venueContract = new ethers.Contract(ADDRESS, ABI, wallet)
+    const message = await venueContract.goBack();
+    console.log(message);
+    const flag = await venueContract.enterVenue(); 
+    console.log(flag);
+}
+main()
+```
