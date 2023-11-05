@@ -163,3 +163,44 @@ bytes4(keccak256(bytes("function_name(type_of_argument1,type_of_arg2,..)" )))
 radha@DESKTOP-E4J3HG3:~$ cast sig "fun1(arg1,arg2)"
   0xf5d93e45  --4bytes f5  d9 3e 45
 ```
+## ways of interacting with a outside contract
+### we have  contract  abi
+```
+equire('dotenv').config();
+const ethers = require('ethers');
+
+ADDRESS = '0x1AC90AFd478F30f2D617b3Cb76ee00Dd73A9E4d3'
+ABI = [{"inputs":[{"internalType":"string","name":"initialFlag","type":"string"},{"internalType":"string","name":"initialMessage","type":"string"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[],"name":"enterVenue","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"goBack","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"}]
+// provider
+const provider = new ethers.AlchemyProvider('sepolia', process.env.API_KEY);
+
+const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
+async function main(){
+    const venueContract = new ethers.Contract(ADDRESS, ABI, wallet)
+    const message = await venueContract.goBack();
+    console.log(message);
+    const flag = await venueContract.enterVenue(); 
+    console.log(flag);
+}
+main()
+```
+### we have just contract address
+->one way using some script on remix(need to know it)
+```
+another way using foundry
+
+```
+## forge create ..scripting 
+https://book.getfoundry.sh/tutorials/solidity-scripting
+```
+Forge can deploy smart contracts to a given network with the forge create command.
+$ forge create --rpc-url <your_rpc_url> --private-key <your_private_key> src/MyContract.sol:MyContract
+
+Solidity scripting is a way to declaratively deploy contracts using Solidity, instead of using the more limiting and less user friendly forge create.
+
+vm.envInt()
+vm.envString()
+we can write our contract in src folder
+we go to script folder and in the run funciton we deploy our contract
+
+```
