@@ -204,3 +204,14 @@ we can write our contract in src folder
 we go to script folder and in the run funciton we deploy our contract
 
 ```
+# 06-11-2023
+## msg -global varialble
+https://medium.com/upstate-interactive/what-you-need-to-know-about-msg-global-variables-in-solidity-566f1e83cc69
+
+## calldata
+```
+Calldata is a type of temporary storage, containing the data specified in a function’s arguments. The difference between it and memory, another type of temporary storage, is that calldata’s immutability—whatever is stored inside calldata cannot be changed.
+```
+https://medium.com/@solidity101/100daysofsolidity-understanding-the-call-function-in-solidity-interacting-with-contracts-4ccd216b1dfe#:~:text=The%20%E2%80%9Ccall%E2%80%9D%20function%20in%20Solidity%20enables%20contract%2Dto%2D,certain%20considerations%20and%20potential%20pitfalls.
+https://www.alchemy.com/overviews/solidity-call
+
