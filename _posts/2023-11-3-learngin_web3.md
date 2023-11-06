@@ -212,6 +212,66 @@ https://medium.com/upstate-interactive/what-you-need-to-know-about-msg-global-va
 ```
 Calldata is a type of temporary storage, containing the data specified in a function’s arguments. The difference between it and memory, another type of temporary storage, is that calldata’s immutability—whatever is stored inside calldata cannot be changed.
 ```
+## call 
+```
+
 https://medium.com/@solidity101/100daysofsolidity-understanding-the-call-function-in-solidity-interacting-with-contracts-4ccd216b1dfe#:~:text=The%20%E2%80%9Ccall%E2%80%9D%20function%20in%20Solidity%20enables%20contract%2Dto%2D,certain%20considerations%20and%20potential%20pitfalls.
 https://www.alchemy.com/overviews/solidity-call
+```
+## send ether using call
+### receive contract
 
+```
+create a contract and deploy it ,make sure it have a receive external payble function
+ex:
+contract ReceiveEther {
+	// Function to receive Ether. msg.data must be empty
+  receive() external payable {}‍
+  
+  // Fallback function is called when msg.data is not empty
+  fallback() external payable {}‍
+  
+  function getBalance() public view returns (uint) {
+  	return address(this).balance;
+   }
+  }
+
+```
+### send contract
+```
+
+contract SendEther {
+	function sendViaCall(address payable _to) public payable {
+  	// Call returns a boolean value indicating success or failure.
+    (bool sent, bytes memory data) = _to.call{value: msg.value}("");
+    require(sent, "Failed to send Ether");
+   }
+  }
+```
+### call function example
+```
+/ SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.13;
+
+// import "forge-std/Script.sol";
+import {Script} from "forge-std/Script.sol";
+import "forge-std/console.sol";
+
+contract SolveVIP is Script {
+    function getHelp() public{
+        address target = 0x52DF9c7cc8f8f5C8204F2401505A6248cE49d637;
+        (bool success, bytes memory _help) = target.call(abi.encodeWithSignature("help()"));
+        require(success);
+        console.logBytes(abi.decode(_help, (bytes)));
+    }
+    function run() public {
+        getHelp();
+    }
+}
+forge script script/Solve.s.sol --rpc-url https://eth-sepolia.g.alchemy.com/v2/SMfUKiFXRNaIsjRSccFuYCq8Q3QJgks8
+```
+### abi decode
+https://solidity-by-example.org/abi-decode/
+```
+https://book.getfoundry.sh/cast/
+```
