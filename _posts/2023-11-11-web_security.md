@@ -109,3 +109,37 @@ circumflex ^:Matches any pattern that begins with the expression followed by ^::
 cd /etc/ssh ; ls | grep ^s
 
 ```
+### access control
+```
+```
+
+### redictions
+```
+Redirection loops
+in order of precedence
+http rediction
+
+
+html redictions
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Redirections
+<head>
+  <meta http-equiv="Refresh" content="0; URL=https://example.com/" />
+</head>
+javascript redicrion
+window.location = "https://example.com/";
+
+```
+#### http headers
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
+### file upload vulnerabilites
+```
+What is a MIME type?
+A MIME type (also known as a Multipurpose Internet Mail Extension) is a standard that indicates the format of a fil
+mime type type/subtype
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types
+
+MIME sniffing
+In the absence of a MIME type, or in certain cases where browsers believe they are incorrect, browsers may perform MIME sniffing — guessing the correct MIME type by looking at the bytes of the resource.
+
+Servers can prevent MIME sniffing by sending the X-Content-Type-Options heade
+```
