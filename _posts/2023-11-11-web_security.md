@@ -239,3 +239,8 @@ exploit.p.phphp
 What is a polyglot? Just like PNG, JPEG, and DOC are valid file types, polyglots are a combination of two different file types. For example Phar + JPEG (PHP archive and JPEG file), GIFAR (Gif and Rar file) Javascript + JPEG, etc
 ```
 
+### race condition
+```
+time window
+https://portswigger.net/web-security/race-conditions/lab-race-conditions-limit-overrun
+```
