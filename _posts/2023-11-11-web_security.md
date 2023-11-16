@@ -238,9 +238,17 @@ exploit.p.phphp
 ```
 What is a polyglot? Just like PNG, JPEG, and DOC are valid file types, polyglots are a combination of two different file types. For example Phar + JPEG (PHP archive and JPEG file), GIFAR (Gif and Rar file) Javascript + JPEG, etc
 ```
-
+#  15-11-2023
 ### race condition
 ```
 time window
 https://portswigger.net/web-security/race-conditions/lab-race-conditions-limit-overrun
+```
+# 16-11-2023
+## ssrf
+```
+we can use a our url which redictes to a local url
+when we know our get/post request itself makes a requests a local url to fetch results,but we giving the explicit 127.0.0.1 or localhots
+is blocked we can use this way of redirction
+collaborator everywhere-this extension is useful for automatic finding of vulns in this category
 ```
