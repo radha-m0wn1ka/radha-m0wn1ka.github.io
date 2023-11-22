@@ -8,3 +8,5 @@ https://blog.expo.dev/the-new-expo-cli-f4250d8e3421
 npm install -g expo-cli
 check by $expo
 expo init app_name
+npm start
+download andorid studio
