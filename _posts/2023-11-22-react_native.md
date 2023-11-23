@@ -41,3 +41,8 @@ justify content:space betwen
 # 23-11-2023
 ```
 https://www.youtube.com/watch?v=C8f-gAQSEv0
+scrollview componnet always scorll vertical false so no boucning
+scroll view renders all its child comonents which is a issue if the child is large in size
+flat list is best than scroll view
+componnets using
+pressable component
