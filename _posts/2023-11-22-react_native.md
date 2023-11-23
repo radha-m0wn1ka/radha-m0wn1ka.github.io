@@ -46,3 +46,4 @@ scroll view renders all its child comonents which is a issue if the child is lar
 flat list is best than scroll view
 componnets using
 pressable component
+```
