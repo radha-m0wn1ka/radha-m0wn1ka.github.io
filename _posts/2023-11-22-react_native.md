@@ -38,3 +38,6 @@ flex:1
 flex direction:row column
 justify content:space betwen
 ```
+# 23-11-2023
+```
+https://www.youtube.com/watch?v=C8f-gAQSEv0
