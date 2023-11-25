@@ -50,3 +50,4 @@ pressable component
 # 25-11-2023
 ```
 dimensions api to get dimension of device and screen
+useWindow Dimension hook
