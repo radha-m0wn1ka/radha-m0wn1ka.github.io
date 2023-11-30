@@ -351,6 +351,8 @@ contract Attack{
     console2.log("greetnig person is",helloWorld.greeting_person());
     console2.log(helloWorld.greet());
     console2.log("returned values is ", helloWorld.get());
+	helloWorld.set_count(111);
+    console2.log("seeteig count ",helloWorld.get());
     } 
 
 }
@@ -360,7 +362,7 @@ contract CounterScript is Script {
     function run() public {
         Attack attack=new Attack();
         attack.f1();
-
+	
         
         
         vm.broadcast();
@@ -393,6 +395,9 @@ contract HelloWorld {
     function dec() public {
         // This function will fail if count = 0
         count -= 1;
+    }
+function set_count(uint x) public {
+        count=x;
     }
 }
 ```
