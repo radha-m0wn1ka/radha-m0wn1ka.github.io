@@ -402,3 +402,17 @@ function set_count(uint x) public {
 }
 ```
 
+## https://solidity-by-example.org/sending-ether/
+## data storag
+
+```
+https://docs.alchemy.com/docs/when-to-use-storage-vs-memory-vs-calldata-in-solidity
+call data->Calldata is used to store function arguments that are passed in from an external caller
+
+memory :arrays,sturcts,parameters->Memory is used to store temporary data that is needed during the execution of a function
+storage:global variables,stored permantely on chain
+
+
+The key difference between memory and calldata is that memory is a temporary data storage location that can be modified by a function, while calldata is a read-only temporary data storage location used to hold function arguments passed in from an external caller.
+
+```
