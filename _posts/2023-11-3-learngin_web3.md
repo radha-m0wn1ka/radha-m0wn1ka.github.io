@@ -291,3 +291,17 @@ https://solidity-by-example.org/call/
 
 https://solidity-by-example.org/calling-contract/
 ```
+### another function example
+```
+
+TARGET.buy{value: 10 ether}();
+
+function buy() public payable
+    {
+        _mint(msg.value, msg.sender);
+    }
+function _mint(uint256 amount, address target) internal
+    {
+        balances[target] += amount;
+    } 
+```
