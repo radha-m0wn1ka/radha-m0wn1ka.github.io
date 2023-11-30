@@ -275,3 +275,19 @@ https://solidity-by-example.org/abi-decode/
 ```
 https://book.getfoundry.sh/cast/
 ```
+
+# 30-11-2023
+## calling other contract highly useful links
+```
+https://solidity-by-example.org/call/
+
+(bool success, bytes memory data) = _addr.call{value: msg.value, gas: 5000}(
+            abi.encodeWithSignature("foo(string,uint256)", "call foo", 123)
+        );
+(bool success, bytes memory data) = _addr.call{value: msg.value}(
+            abi.encodeWithSignature("doesNotExist()")
+        );
+(msg.sender).call{value: amount}("");
+
+https://solidity-by-example.org/calling-contract/
+```
