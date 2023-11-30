@@ -305,3 +305,95 @@ function _mint(uint256 amount, address target) internal
         balances[target] += amount;
     } 
 ```
+## solidity scripting
+https://book.getfoundry.sh/tutorials/solidity-scripting
+## hello world
+```// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.13;
+
+import {Script, console2} from "forge-std/Script.sol";
+
+contract HelloWorld {
+    string public greet = "Hello World!";
+}
+contract CounterScript is Script {
+    function setUp() public {}
+
+    function run() public {
+        HelloWorld helloWorld;
+        
+        helloWorld=new HelloWorld();
+        console2.log(helloWorld.greet());
+        
+        vm.broadcast();
+    }
+}
+ $anvil
+ $forge script script/Counter.s.sol:CounterScript --fork-url http://localhost:8545 --broadcast
+```
+## another code
+```
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.13;
+
+import {Script, console2} from "forge-std/Script.sol";
+import {HelloWorld} from "../src/HelloWorld.sol";
+contract Attack{
+    function  f1() public {
+    HelloWorld helloWorld;
+    helloWorld=new HelloWorld();
+
+    console2.log("returned values is ", helloWorld.get());
+    helloWorld.inc();
+    helloWorld.inc();
+    helloWorld.dec();
+    console2.log("msg sender is ",msg.sender);
+    console2.log("greetnig person is",helloWorld.greeting_person());
+    console2.log(helloWorld.greet());
+    console2.log("returned values is ", helloWorld.get());
+    } 
+
+}
+contract CounterScript is Script {
+    function setUp() public {}
+
+    function run() public {
+        Attack attack=new Attack();
+        attack.f1();
+
+        
+        
+        vm.broadcast();
+    }
+}
+
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.13;
+
+contract HelloWorld {
+     uint  count;
+     address public greeting_person;
+    constructor(){
+        greeting_person=msg.sender;
+    }
+    string public greet = "Hello World!";
+   
+
+    // Function to get the current count
+    function get() public view returns (uint) {
+        return count;
+    }
+
+    // Function to increment count by 1
+    function inc() public {
+        count += 1;
+    }
+
+    // Function to decrement count by 1
+    function dec() public {
+        // This function will fail if count = 0
+        count -= 1;
+    }
+}
+```
+
