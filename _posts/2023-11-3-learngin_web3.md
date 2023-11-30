@@ -416,3 +416,70 @@ storage:global variables,stored permantely on chain
 The key difference between memory and calldata is that memory is a temporary data storage location that can be modified by a function, while calldata is a read-only temporary data storage location used to hold function arguments passed in from an external caller.
 
 ```
+## a view for msg.sender,owner vars
+```
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+import {Script, console2} from "forge-std/Script.sol";
+
+
+contract HelloWorld {
+    address payable public owner;
+
+    constructor() {
+        owner = payable(msg.sender);
+    }
+
+    receive() external payable {}
+
+    function withdraw(uint _amount) external {
+        require(msg.sender == owner, "caller is not owner");
+        payable(msg.sender).transfer(_amount);
+    }
+
+    function getBalance() public returns (address,uint) {
+        console2.log("from hellowordl.sol address(owner)",address(owner),"balance of owner",address(owner).balance);
+        console2.log("from hellowordl .sol addres(msg.sender)",address(msg.sender),"balance of msg.sender is ",address(msg.sender).balance);
+        return (address(this),address(this).balance);
+    }
+}
+```
+```
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.13;
+
+import {Script, console2} from "forge-std/Script.sol";
+import {HelloWorld} from "../src/HelloWorld.sol";
+contract Attack{
+    address payable public owner;
+
+    constructor() {
+        owner = payable(msg.sender);
+    }
+    function  f1() public {
+    HelloWorld helloWorld;
+    helloWorld=new HelloWorld();
+    console2.log("address of f1 is ",address(this),address(this).balance);
+    address x;
+    uint y;
+    (x,y)=helloWorld.getBalance();
+    console2.log("balsnce is ",x,y);
+    console2.log("from counter.sol address(owner)",address(owner),"balance of owner",address(owner).balance);
+    console2.log("from counter .sol addres(msg.sender)",address(msg.sender),"balance of msg.sender is ",address(msg.sender).balance);
+        
+    }
+
+}
+contract CounterScript is Script {
+    function setUp() public {}
+
+    function run() public {
+        Attack attack=new Attack();
+        attack.f1();
+        vm.broadcast();
+    }
+}
+```
+```
+forge script script/Counter.s.sol:CounterScript --fork-url http://localhost:8545 --broadcast
+```
