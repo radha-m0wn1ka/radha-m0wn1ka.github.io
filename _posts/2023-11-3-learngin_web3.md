@@ -483,3 +483,6 @@ contract CounterScript is Script {
 ```
 forge script script/Counter.s.sol:CounterScript --fork-url http://localhost:8545 --broadcast
 ```
+# 1-12-2023
+## delegate call
+https://celo.academy/t/preventing-vulnerabilities-in-solidity-delegate-call/38
