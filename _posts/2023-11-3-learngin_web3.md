@@ -486,3 +486,5 @@ forge script script/Counter.s.sol:CounterScript --fork-url http://localhost:8545
 # 1-12-2023
 ## delegate call
 https://celo.academy/t/preventing-vulnerabilities-in-solidity-delegate-call/38
+## address cating contracts
+https://solidity-by-example.org/hacks/hiding-malicious-code-with-external-contract/
