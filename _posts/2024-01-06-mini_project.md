@@ -2,7 +2,7 @@
 ### sensitive data scraping project
 - store domains in a csv file
 - run the software
-- sofware fidns the subdomains by subdmain enumeraion
+- sofware finds the subdomains by subdmain enumeraion
 - for each subdomain using katana it crawls all pages
 - for each page we save bas64 encoded data and extract the sensitive info like emails,phone no
 - store the whole result in a json
